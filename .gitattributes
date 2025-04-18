@@ -1,0 +1,30 @@
+# Exclude vendored and generated content from language stats
+
+# Laravel dependencies and generated files
+/api/vendor/** linguist-vendored
+/api/storage/** linguist-generated
+/api/bootstrap/cache/** linguist-generated
+
+# Node dependencies and Next.js output
+/web/node_modules/** linguist-vendored
+/web/.next/** linguist-generated
+/web/out/** linguist-generated
+/web/build/** linguist-generated
+/web/dist/** linguist-generated
+
+# Lockfiles and environment configs
+*.lock linguist-generated
+.env linguist-generated
+*.env.example linguist-generated
+
+# Blade templates should count as HTML
+*.blade.php linguist-language=HTML
+
+# TypeScript across Next.js frontend
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+
+# Ensure directory-level intent
+api/** linguist-language=PHP
+web/** linguist-language=TypeScript
+
