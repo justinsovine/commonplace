@@ -4,7 +4,6 @@
 
 This is a small proof-of-concept to demonstrate full-stack integration with a Laravel API backend and a Next.js frontend. It focuses on simplicity: no user accounts, no admin panel, just a handful of seeded spaces and a way to reserve them.
 
----
 
 ## Stack
 
@@ -13,7 +12,6 @@ This is a small proof-of-concept to demonstrate full-stack integration with a La
 - **Database**: MySQL (or SQLite locally) with seed data for spaces  
 - **Server**: NGINX + PHP-FPM + Node.js (deployed on a single VPS)
 
----
 
 ## Project Structure
 
@@ -24,21 +22,18 @@ This is a small proof-of-concept to demonstrate full-stack integration with a La
 ├── .env              # Environment config (local/dev)
 ├── README.md         # You're here</code>
 
----
 
 ## MVP Features
 
 - Browse available community spaces
 - Submit a reservation with name, time, and purpose
 - Seeded data, no login required
-
----
+  
 
 ## Status
 
 This is very much a work-in-progress.
 
----
 
 ## Feedback
 
