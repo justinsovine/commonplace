@@ -18,8 +18,7 @@ This is a small proof-of-concept to demonstrate full-stack integration with a La
 <code>/commonplace/
 ├── api/              # Laravel app (API only, no views)
 ├── web/              # Next.js frontend
-├── nginx/            # NGINX config files
-├── .env              # Environment config (local/dev)
+├── LICENSE           # MIT license
 ├── README.md         # You're here</code>
 
 
