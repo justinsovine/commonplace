@@ -12,7 +12,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with('space', 'user')->get(); // eager load space and user
+        //$bookings = Booking::with('space', 'user')->get();
+        $bookings = Booking::with('space')->get(); // eager load space
         return response()->json([
             'message' => 'List of all bookings',
             'bookings' => $bookings,

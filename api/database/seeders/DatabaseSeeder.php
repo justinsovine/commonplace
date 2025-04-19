@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         //
         $this->call([
             SpaceSeeder::class,
+            BookingSeeder::class,
         ]);
     }
 }
