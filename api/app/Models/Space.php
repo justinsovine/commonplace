@@ -9,4 +9,10 @@ class Space extends Model
 {
     /** @use HasFactory<\Database\Factories\SpaceFactory> */
     use HasFactory;
+    protected $fillable = [
+        'name', 
+        'description', 
+        'image'
+    ];
+
 }
