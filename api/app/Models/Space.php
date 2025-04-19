@@ -15,4 +15,11 @@ class Space extends Model
         'image'
     ];
 
+    /**
+     * Get all bookings for this space
+     */
+    public function bookings() {
+        return $this->hasMany(Booking::class);
+    }
+
 }

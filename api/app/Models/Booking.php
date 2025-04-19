@@ -23,4 +23,11 @@ class Booking extends Model
     public function space() {
         return $this->belongsTo(Space::class);
     }
+
+    /**
+     * Get the user that owns the booking
+     */
+    // public function user() {
+    //     return $this->belongsTo(User::class);
+    // }
 }

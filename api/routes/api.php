@@ -14,5 +14,8 @@ Route::get('/spaces/{space}', [SpaceController::class, 'show']);
 // List all bookings
 Route::get('/bookings', [BookingController::class, 'index']);
 
+// List all bookings by space
+Route::get('/bookings/{space}', [BookingController::class, 'show']);
+
 // Create a new booking
 Route::post('/bookings', [BookingController::class, 'store']);

@@ -22,10 +22,10 @@ class BookingFactory extends Factory
     {
         return [
             'space_id' => Space::inRandomOrder()->first()->id, // Random space
+            'status' => $this->faker->randomElement(['pending', 'confirmed', 'canceled']),
             //'user_id' => User::inRandomOrder()->first()->id,  // Random user
             'start_time' => $this->faker->dateTimeBetween('now', '+1 week'),
             'end_time' => $this->faker->dateTimeBetween('+1 hour', '+2 weeks'),
-            'status' => $this->faker->randomElement(['pending', 'confirmed', 'canceled']),
         ];
     }
 }

@@ -19,12 +19,6 @@ class BookingSeeder extends Seeder
         //$user = User::first();
         $space = Space::first(); // Assumes at least one space has been seeded
 
-        Booking::create([
-            'space_id' => $space->id,
-            //'user_id' => $user->id,
-            'start_time' => now()->addDays(1),
-            'end_time' => now()->addDays(1)->addHours(2),
-            'status' => 'pending',
-        ]);
+        Booking::factory()->count(10)->create();
     }
 }

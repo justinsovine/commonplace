@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('space_id')->constrained()->onDelete('cascade');
+            $table->enum('status', ['pending', 'confirmed', 'canceled'])->default('pending'); // Tracks if the booking is confirmed, pending, or cancelled
             //$table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamp('start_time');
             $table->timestamp('end_time');
-            $table->enum('status', ['pending', 'confirmed', 'canceled'])->default('pending'); // Tracks if the booking is confirmed, pending, or cancelled
             $table->timestamps();
         });
     }
