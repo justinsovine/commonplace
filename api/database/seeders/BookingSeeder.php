@@ -17,8 +17,14 @@ class BookingSeeder extends Seeder
     {
         // Create test bookings
         //$user = User::first();
+
+        // Create SpaceFactory to use this
+        // if (Space::count() === 0) {
+        //     \App\Models\Space::factory()->create(); // Ensure at least one Space exists
+        // }
         $space = Space::first(); // Assumes at least one space has been seeded
 
         Booking::factory()->count(10)->create();
     }
+
 }
