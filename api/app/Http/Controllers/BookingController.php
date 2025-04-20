@@ -37,7 +37,8 @@ class BookingController extends Controller
      * Store a newly created booking in storage.
      */
     public function store(Request $request)
-    {
+    {   
+        // Validate request
         $validated = $request->validate([
             'space_id' => 'required|exists:spaces,id', // checks to see if it exists in `spaces` table by `id`
             'status' => 'in:pending,confirmed,cancelled',
@@ -45,6 +46,24 @@ class BookingController extends Controller
             'start_time' => 'required|date|after:now',
             'end_time' => 'required|date|after:start_time',
         ]);
+
+        // Check for conflicting bookings
+        $conflict = Booking::where('space_id', $validated['space_id'])
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->where(function ($query) use ($validated) {
+                $query->whereBetween('start_time', [$validated['start_time'], $validated['end_time']])
+                    ->orWhereBetween('end_time', [$validated['start_time'], $validated['end_time']])
+                    ->orWhere(function ($query) use ($validated) {
+                        $query->where('start_time', '<=', $validated['start_time'])
+                                ->where('end_time', '>=', $validated['end_time']);
+                    });
+            })->exists();
+        
+        if ($conflict) {
+            return response()->json([
+                'message' => 'This space is already booked for the selected time period.'
+            ], 409); // 409 "Conflict"
+        }
 
         // Create a booking
         $booking = Booking::create($validated);
