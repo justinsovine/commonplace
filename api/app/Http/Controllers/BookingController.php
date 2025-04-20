@@ -52,6 +52,6 @@ class BookingController extends Controller
         return response()->json([
             'message' => 'Booking created successfully',
             'booking' => $booking,
-        ], 201); // Status 201 Created
+        ], 201); // Status 201 "Created"
     }
 }
