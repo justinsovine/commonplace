@@ -7,18 +7,29 @@ use Illuminate\Http\Request;
 
 class SpaceController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         return response()->json([
             'message' => 'List of all available spaces',
-            'spaces' => Space::all(),
-        ]);
+            'code' => 200,
+            'status' => 'OK',
+            'data' => [
+                'spaces' => Space::all(),
+            ],
+            'errors' => null
+        ], 200);
     }
 
-    // Uses "route model binding" to inject a model into controller method based on id in the route
-    public function show(Request $request, Space $space) {
+    public function show(Request $request, Space $space)
+    {
         return response()->json([
             'message' => 'Details about a single space',
-            'space' => $space,
-        ]);
+            'code' => 200,
+            'status' => 'OK',
+            'data' => [
+                'space' => $space,
+            ],
+            'errors' => null
+        ], 200);
     }
 }

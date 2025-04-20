@@ -14,7 +14,7 @@ class Booking extends Model
     // By default, Laravel prevents mass-assignment vulnerabilities by not allowing any attributes to be filled unless explicitly stated
     protected $fillable = [
         //'space_id', 'user_id', 'start_time', 'end_time', 'status'
-        'space_id', 'start_time', 'end_time', 'status'
+        'space_id', 'status', 'start_time', 'end_time'
     ];
 
     /**
