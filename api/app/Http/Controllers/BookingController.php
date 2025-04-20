@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Space;
 use App\Exceptions\BookingConflictException;
 use App\Models\Booking;
-use App\Models\Space;
-use Illuminate\Http\Request;
+use App\Mail\BookingCreatedMail;
 
 class BookingController extends Controller
 {
@@ -86,14 +89,34 @@ class BookingController extends Controller
         // Create the booking if no conflict
         $booking = Booking::create($validated);
 
-        return response()->json([
-            'message' => 'Booking created successfully',
-            'code' => 201,
-            'status' => 'Created',
-            'data' => [
-                'booking' => $booking,
-            ],
-            'errors' => null,
-        ], 201); // HTTP 201 Created
+        try {
+            // Try sending the email
+            Mail::to('justinsovine@gmail.com')->send(new BookingCreatedMail($booking));
+    
+            // If the email is sent successfully, return success response
+            return response()->json([
+                'message' => 'Booking created successfully',
+                'code' => 201,
+                'status' => 'Created',
+                'data' => [
+                    'booking' => $booking,
+                ],
+                'errors' => null,
+            ], 201); // HTTP 201 Created
+    
+        } catch (Exception $e) {
+            // If there is an error sending the email, handle it gracefully
+            return response()->json([
+                'message' => 'Booking created successfully, but email failed to send.',
+                'code' => 500,
+                'status' => 'Error',
+                'errors' => [
+                    'email' => 'Failed to send email: ' . $e->getMessage(),
+                ],
+                'data' => [
+                    'booking' => $booking,
+                ],
+            ], 500); // HTTP 500 Internal Server Error
+        }
     }
 }
