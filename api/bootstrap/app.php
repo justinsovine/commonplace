@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 'exception' => $exception
             ]);
 
+            // Booking conflict
             if ($exception instanceof BookingConflictException) {
                 throw new BookingConflictException();
             }
