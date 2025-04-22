@@ -35,3 +35,7 @@ This API is built using **Laravel** and follows RESTful principles for clean, ma
 ---
 
 This API is designed to be simple yet extendable, with clear routes for handling spaces and bookings data. You can easily integrate it into a frontend application or extend its functionality with additional features as needed.
+
+
+## Screenshot
+![Screenshot of Postman](screenshot.png)
