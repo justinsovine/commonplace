@@ -25,7 +25,7 @@ export async function getSpaces(): Promise<Space[]> {
         const response = await fetch(`${API_URL}/spaces`);
         
         if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+            throw new Error(`API error: ${response.status}`);
         }
         
         const result: ApiResponse<{spaces: Space[]}> = await response.json();
@@ -42,7 +42,7 @@ export async function getSpace(id: number): Promise<Space | null> {
         const response = await fetch(`${API_URL}/spaces/${id}`);
         
         if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+            throw new Error(`API error: ${response.status}`);
         }
         
         const result: ApiResponse<{space: Space}> = await response.json();
