@@ -54,7 +54,7 @@ export default function Spaces({ spaces }: SpacesPageProps) {
 
   return (
     <div className={`${funnelDisplay.className} min-h-screen`}>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row gap-12">
         {/* Sticky left section */}
         <div className="md:w-2/5 md:sticky md:top-8 md:h-screen md:flex md:flex-col md:justify-start pt-8">
             <h1 className="text-6xl font-extrabold text-[#fffffe] mb-6">Your Community, Your Space</h1>
@@ -64,12 +64,12 @@ export default function Spaces({ spaces }: SpacesPageProps) {
         </div>
 
         {/* Scrolling cards section */}
-        <div className="md:w-3/5 px-8">
+        <div className="md:w-3/5">
           <div 
             ref={cardsRef} 
             className="flex flex-col gap-8"
           >
-            {tripleSpaces.map((space, index) => (
+            {spaces.map((space, index) => (
                 <div 
                     key={`${space.id}-${index}`}
                     className="space-card opacity-0 translate-y-8 transition-all duration-300 ease-out bg-[#e8e4e6] rounded-sm shadow-md overflow-hidden flex"

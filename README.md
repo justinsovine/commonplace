@@ -37,3 +37,8 @@ This is very much a work-in-progress.
 ## Feedback
 
 If you’ve got ideas for where this could go or just want to chat about neighborhood tools and local-first tech, open an issue or hit me up.
+
+
+## Screenshots
+![Screenshot of Homepage](assets/homepage.png)
+![Screenshot of Spaces Page](assets/spaces.png)
