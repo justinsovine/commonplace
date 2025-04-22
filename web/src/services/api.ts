@@ -6,49 +6,49 @@ export interface Space {
     image: string;
     created_at: string;
     updated_at: string;
-  }
-  
-  export interface ApiResponse<T> {
+}
+
+export interface ApiResponse<T> {
     message: string;
     code: number;
     status: string;
     data: T;
     errors: null | any;
-  }
-  
-  // Base API URL
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  
-  // Fetch all spaces
-  export async function getSpaces(): Promise<Space[]> {
+}
+
+// Base API URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// Fetch all spaces
+export async function getSpaces(): Promise<Space[]> {
     try {
-      const response = await fetch(`${API_URL}/spaces`);
-      
-      if (!response.ok) {
+        const response = await fetch(`${API_URL}/spaces`);
+        
+        if (!response.ok) {
         throw new Error(`API error: ${response.status}`);
-      }
-      
-      const result: ApiResponse<{spaces: Space[]}> = await response.json();
-      return result.data.spaces;
+        }
+        
+        const result: ApiResponse<{spaces: Space[]}> = await response.json();
+        return result.data.spaces;
     } catch (error) {
-      console.error('Error fetching spaces:', error);
-      return [];
+        console.error('Error fetching spaces:', error);
+        return [];
     }
-  }
-  
-  // Get a single space by ID
-  export async function getSpace(id: number): Promise<Space | null> {
+}
+
+// Get a single space by ID
+export async function getSpace(id: number): Promise<Space | null> {
     try {
-      const response = await fetch(`${API_URL}/spaces/${id}`);
-      
-      if (!response.ok) {
+        const response = await fetch(`${API_URL}/spaces/${id}`);
+        
+        if (!response.ok) {
         throw new Error(`API error: ${response.status}`);
-      }
-      
-      const result: ApiResponse<{space: Space}> = await response.json();
-      return result.data.space;
+        }
+        
+        const result: ApiResponse<{space: Space}> = await response.json();
+        return result.data.space;
     } catch (error) {
-      console.error(`Error fetching space ${id}:`, error);
-      return null;
+        console.error(`Error fetching space ${id}:`, error);
+        return null;
     }
-  }
+}
