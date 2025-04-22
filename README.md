@@ -2,9 +2,6 @@
 
 **Commonplace** is a lightweight community space reservation app, designed to help neighborhoods, churches, co-ops, or local collectives manage shared physical spaces like meeting rooms, event halls, studios, or anything else that gets booked and used.
 
-This is a small proof-of-concept to demonstrate full-stack integration with a Laravel API backend and a Next.js frontend. It focuses on simplicity: no user accounts, no admin panel, just a handful of seeded spaces and a way to reserve them.
-
-
 ## Stack
 
 - **Frontend**: [Next.js](https://nextjs.org/) with TailwindCSS for quick styling  
