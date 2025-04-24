@@ -6,7 +6,6 @@ export interface Space {
     image: string;
     created_at: string;
     updated_at: string;
-    space: Space;
 }
 
 export interface Booking {
@@ -17,6 +16,7 @@ export interface Booking {
     end_time: string;
     created_at: string;
     updated_at: string;
+    space: Space;
 }
 
 export interface ApiResponse<T> {

@@ -39,3 +39,5 @@ If you’ve got ideas for where this could go or just want to chat about neighbo
 ## Screenshots
 ![Screenshot of Homepage](assets/homepage.png)
 ![Screenshot of Spaces Page](assets/spaces.png)
+![Screenshot of Single Space Page](assets/single-space.png)
+![Screenshot of All Bookings Page](assets/bookings.png)
