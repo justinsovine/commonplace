@@ -1,32 +1,32 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  /* Base colors */
-  --background: #004643;
-  --foreground: #fffffe;
-  --paragraph: #abd1c6;
-  --button: #f9bc60;
-  --button-text: #001e1d;
-  
-  /* Illustration colors */
-  --stroke: #001e1d;
-  --main: #e8e4e6;
-  --highlight: #f9bc60;
-  --secondary: #abd1c6;
-  --tertiary: #e16162;
+    /* Base colors */
+    --background: #004643;
+    --foreground: #fffffe;
+    --paragraph: #abd1c6;
+    --button: #f9bc60;
+    --button-text: #001e1d;
+
+    /* Illustration colors */
+    --stroke: #001e1d;
+    --main: #e8e4e6;
+    --highlight: #f9bc60;
+    --secondary: #abd1c6;
+    --tertiary: #e16162;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-paragraph: var(--paragraph);
-  --color-button: var(--button);
-  --color-button-text: var(--button-text);
-  --color-stroke: var(--stroke);
-  --color-main: var(--main);
-  --color-highlight: var(--highlight);
-  --color-secondary: var(--secondary);
-  --color-tertiary: var(--tertiary);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-paragraph: var(--paragraph);
+    --color-button: var(--button);
+    --color-button-text: var(--button-text);
+    --color-stroke: var(--stroke);
+    --color-main: var(--main);
+    --color-highlight: var(--highlight);
+    --color-secondary: var(--secondary);
+    --color-tertiary: var(--tertiary);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -37,7 +37,7 @@
 } */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Funnel Display", sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Funnel Display', sans-serif;
 }

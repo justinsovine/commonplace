@@ -23,12 +23,12 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function getSpaces(): Promise<Space[]> {
     try {
         const response = await fetch(`${API_URL}/spaces`);
-        
+
         if (!response.ok) {
             throw new Error(`API error: ${response.status}`);
         }
-        
-        const result: ApiResponse<{spaces: Space[]}> = await response.json();
+
+        const result: ApiResponse<{ spaces: Space[] }> = await response.json();
         return result.data.spaces;
     } catch (error) {
         console.error('Error fetching spaces:', error);
@@ -40,12 +40,12 @@ export async function getSpaces(): Promise<Space[]> {
 export async function getSpace(id: number): Promise<Space | null> {
     try {
         const response = await fetch(`${API_URL}/spaces/${id}`);
-        
+
         if (!response.ok) {
             throw new Error(`API error: ${response.status}`);
         }
-        
-        const result: ApiResponse<{space: Space}> = await response.json();
+
+        const result: ApiResponse<{ space: Space }> = await response.json();
         return result.data.space;
     } catch (error) {
         console.error(`Error fetching space ${id}:`, error);
