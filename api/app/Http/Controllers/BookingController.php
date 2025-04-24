@@ -36,13 +36,18 @@ class BookingController extends Controller
      */
     public function show(Request $request, Space $space)
     {
+        // Validate the status query string
+        $request->validate([
+            'status' => 'in:pending,confirmed,cancelled',
+        ]);
         $status = $request->query('status'); // /api/bookings?status=[status]
-        $bookings = $space->bookings();
 
+        // Get bookings 
+        $bookings = $space->bookings();
         if ($status) {
+            // Filter bookings by status
             $bookings->where('status', $status);
         }
-
         $bookings = $bookings->get();
 
         return response()->json([

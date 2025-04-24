@@ -29,7 +29,7 @@ export default function SpacePage({ space, formattedDate, bookings }: SpacePageP
     
     return (
         <div className={`${funnelDisplay.className} min-h-screen`}>
-            <div className={`container mx-auto px-4 pb-8 transition-all duration-700 ease-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`container mx-auto pb-8 transition-all duration-700 ease-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
                 {/* Breadcrumb navigation */}
                 <div className="mb-8">
                     <Link 
@@ -71,27 +71,27 @@ export default function SpacePage({ space, formattedDate, bookings }: SpacePageP
                             
                             {/* Last updated info */}
                             <div>
-                                <h2 className="text-2xl font-semibold text-[#abd1c6] mb-3">Last Updated</h2>
+                                <h2 className="text-2xl font-semibold text-[#abd1c6] mb-4">Last Updated</h2>
                                 <p className="text-[#abd1c6]">
                                     {formattedDate}
                                 </p>
                             </div>
                             
                             {/* Reservation button */}
-                            <div className="pt-4">
+                            <div className="mb-8">
                                 <a 
                                     href={`/reserve/${space.id}`}
                                     className="inline-block bg-[#f9bc60] text-[#001e1d] px-6 py-3 rounded-md text-lg font-semibold
-                                    transition-all duration-150 hover:bg-[#ffd08a] transform hover:-translate-y-0.5 active:translate-y-0.5 active:duration-75 shadow-md"
+                                    transition duration-90 ease-in-out hover:scale-98 hover:bg-button-hover active:scale-96 shadow-md"
                                 >
                                     Reserve this space
                                 </a>
                             </div>
 
                             {/* Upcoming bookings section */}
-                            {bookings && bookings.length > 0 && (
+                            {bookings && bookings.length > 0 ? (
                                 <div>
-                                    <h2 className="text-2xl font-semibold text-[#abd1c6] mb-3">Upcoming Bookings</h2>
+                                    <h2 className="text-2xl font-semibold text-[#abd1c6] mb-4">Upcoming Bookings</h2>
                                     <div className="space-y-4">
                                         {bookings.map((booking) => (
                                             <div 
@@ -124,6 +124,8 @@ export default function SpacePage({ space, formattedDate, bookings }: SpacePageP
                                         ))}
                                     </div>
                                 </div>
+                            ) : (
+                                <p className={`text-paragraph pt-4`}>No confirmed bookings found.</p>
                             )}
                         </div>
                     </div>
