@@ -6,12 +6,13 @@ export interface Space {
     image: string;
     created_at: string;
     updated_at: string;
+    space: Space;
 }
 
 export interface Booking {
     id: number;
     space_id: number;
-    status: 'confirmed' | 'cancelled' | 'pending';  // Add other status types as needed
+    status: 'confirmed' | 'cancelled' | 'pending'; // Add other status types as needed
     start_time: string;
     end_time: string;
     created_at: string;
@@ -60,6 +61,23 @@ export async function getSpace(id: number): Promise<Space | null> {
     } catch (error) {
         console.error(`Error fetching space ${id}:`, error);
         return null;
+    }
+}
+
+// Fetch all bookings
+export async function getAllBookings(): Promise<Booking[]> {
+    try {
+        const response = await fetch(`${API_URL}/bookings`);
+
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+        }
+
+        const result: ApiResponse<{ bookings: Booking[] }> = await response.json();
+        return result.data.bookings;
+    } catch (error) {
+        console.error('Error fetching spaces:', error);
+        return [];
     }
 }
 
