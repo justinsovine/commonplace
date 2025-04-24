@@ -10,7 +10,7 @@ const funnelDisplay = Funnel_Display({
 
 export default function Home() {
     return (
-        <div className={`${funnelDisplay.className} grid gap-6`}>
+        <div className={`${funnelDisplay.className} grid gap-6 pt-8`}>
             <div className='flex flex-col md:flex-row gap-24 items-start'>
                 <div className='w-full md:w-1/2'>
                     <h1 className='text-6xl font-extrabold text-white mb-6'>

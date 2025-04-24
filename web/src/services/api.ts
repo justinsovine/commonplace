@@ -8,6 +8,16 @@ export interface Space {
     updated_at: string;
 }
 
+export interface Booking {
+    id: number;
+    space_id: number;
+    status: 'confirmed' | 'cancelled' | 'pending';  // Add other status types as needed
+    start_time: string;
+    end_time: string;
+    created_at: string;
+    updated_at: string;
+}
+
 export interface ApiResponse<T> {
     message: string;
     code: number;
@@ -50,5 +60,22 @@ export async function getSpace(id: number): Promise<Space | null> {
     } catch (error) {
         console.error(`Error fetching space ${id}:`, error);
         return null;
+    }
+}
+
+// Get all bookings for a specific space
+export async function getSpaceBookings(spaceId: number): Promise<Booking[]> {
+    try {
+        const response = await fetch(`${API_URL}/spaces/${spaceId}/bookings?status=confirmed`);
+
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+        }
+
+        const result: ApiResponse<{ bookings: Booking[] }> = await response.json();
+        return result.data.bookings;
+    } catch (error) {
+        console.error(`Error fetching bookings for space ${spaceId}:`, error);
+        return [];
     }
 }

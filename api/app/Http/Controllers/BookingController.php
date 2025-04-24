@@ -36,7 +36,15 @@ class BookingController extends Controller
      */
     public function show(Request $request, Space $space)
     {
-        $bookings = $space->bookings;
+        $status = $request->query('status'); // /api/bookings?status=[status]
+        $bookings = $space->bookings();
+
+        if ($status) {
+            $bookings->where('status', $status);
+        }
+
+        $bookings = $bookings->get();
+
         return response()->json([
             'message' => 'List of all bookings by space',
             'code' => 200,

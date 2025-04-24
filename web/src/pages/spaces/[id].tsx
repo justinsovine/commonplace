@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getSpace, Space } from '@/services/api';
+import { getSpace, Space, getSpaceBookings, Booking } from '@/services/api';
 
 const funnelDisplay = Funnel_Display({
     variable: '--font-funnel',
@@ -15,9 +15,10 @@ const funnelDisplay = Funnel_Display({
 interface SpacePageProps {
     space: Space;
     formattedDate: string;
+    bookings?: Booking[];
 }
 
-export default function SpacePage({ space, formattedDate }: SpacePageProps) {
+export default function SpacePage({ space, formattedDate, bookings }: SpacePageProps) {
     const [isLoaded, setIsLoaded] = useState(false);
     const RESOURCE_URL = process.env.NEXT_PUBLIC_RESOURCES_URL || '';
     
@@ -28,7 +29,7 @@ export default function SpacePage({ space, formattedDate }: SpacePageProps) {
     
     return (
         <div className={`${funnelDisplay.className} min-h-screen`}>
-            <div className={`container mx-auto px-4 py-8 transition-all duration-700 ease-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`container mx-auto px-4 pb-8 transition-all duration-700 ease-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
                 {/* Breadcrumb navigation */}
                 <div className="mb-8">
                     <Link 
@@ -81,16 +82,52 @@ export default function SpacePage({ space, formattedDate }: SpacePageProps) {
                                 <a 
                                     href={`/reserve/${space.id}`}
                                     className="inline-block bg-[#f9bc60] text-[#001e1d] px-6 py-3 rounded-md text-lg font-semibold
-                                    transition-all duration-300 hover:bg-[#ffd08a] transform hover:-translate-y-1 shadow-md"
+                                    transition-all duration-150 hover:bg-[#ffd08a] transform hover:-translate-y-0.5 active:translate-y-0.5 active:duration-75 shadow-md"
                                 >
                                     Reserve this space
                                 </a>
                             </div>
+
+                            {/* Upcoming bookings section */}
+                            {bookings && bookings.length > 0 && (
+                                <div>
+                                    <h2 className="text-2xl font-semibold text-[#abd1c6] mb-3">Upcoming Bookings</h2>
+                                    <div className="space-y-4">
+                                        {bookings.map((booking) => (
+                                            <div 
+                                                key={booking.id}
+                                                className={`p-3 rounded ${
+                                                    booking.status === 'confirmed' 
+                                                        ? 'bg-secondary' 
+                                                        : 'bg-tertiary'
+                                                }`}
+                                            >
+                                                <div className="flex justify-between items-center">
+                                                    <div>
+                                                        <p className="text-stroke">
+                                                            {new Date(booking.start_time).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'})}
+                                                            {' - '}
+                                                            {new Date(booking.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                                            {' - '}
+                                                            {new Date(booking.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                                        </p>
+                                                    </div>
+                                                    <span className={`px-2 py-1 text-xs rounded ${
+                                                        booking.status === 'confirmed' 
+                                                            ? 'bg-green-700 text-white' 
+                                                            : 'bg-red-700 text-white'
+                                                    }`}>
+                                                        {booking.status}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
-                
-                {/* Additional sections like calendar availability, reviews, etc. could go here */}
             </div>
         </div>
     );
@@ -98,15 +135,19 @@ export default function SpacePage({ space, formattedDate }: SpacePageProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { id } = context.params as { id: string };
+    const spaceId = parseInt(id, 10);
     
     try {
-        const space = await getSpace(parseInt(id, 10));
+        const space = await getSpace(spaceId);
         
         if (!space) {
             return {
                 notFound: true
             };
         }
+        
+        // Get bookings for this space
+        const bookings = await getSpaceBookings(spaceId);
         
         // Format the date
         const updatedDate = new Date(space.updated_at);
@@ -119,7 +160,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return {
             props: {
                 space,
-                formattedDate
+                formattedDate,
+                bookings,
             }
         };
     } catch (error) {

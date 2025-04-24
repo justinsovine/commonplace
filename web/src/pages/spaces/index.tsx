@@ -56,7 +56,7 @@ export default function Spaces({ spaces }: SpacesPageProps) {
         <div className={`${funnelDisplay.className} min-h-screen`}>
             <div className='flex flex-col md:flex-row gap-12'>
                 {/* Sticky left section */}
-                <div className='md:w-2/5 md:sticky md:top-8 md:h-screen md:flex md:flex-col md:justify-start pt-8'>
+                <div className='md:w-2/5 md:sticky md:top-8 md:h-screen md:flex md:flex-col md:justify-start'>
                     <h1 className='text-6xl font-extrabold text-[#fffffe] mb-6'>
                         Your Community, Your Space
                     </h1>
@@ -68,7 +68,7 @@ export default function Spaces({ spaces }: SpacesPageProps) {
                 </div>
 
                 {/* Scrolling cards section */}
-                <div className='md:w-3/5'>
+                <div className='md:w-3/5 -mt-8'>
                     <div ref={cardsRef} className='flex flex-col gap-8'>
                         {spaces.map((space, index) => (
                             <div
@@ -101,7 +101,7 @@ export default function Spaces({ spaces }: SpacesPageProps) {
                                     <a
                                         href={`/spaces/${space.id}`}
                                         className='inline-block bg-[#004643] text-[#fffffe] px-4 py-2 rounded text-sm font-medium
-                                transition-all duration-300 hover:bg-[#006663]'
+                                        transition duration-90 ease-in-out hover:scale-97 active:scale-94 active:bg-button-active hover:bg-[#006663]'
                                     >
                                         View details
                                     </a>
