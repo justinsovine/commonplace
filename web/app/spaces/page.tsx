@@ -1,4 +1,4 @@
-import { getSpaces } from '../../src/services/api';
+import { getSpaces } from '@/api';
 import SpaceCards from './SpaceCards';
 
 export const dynamic = 'force-dynamic';

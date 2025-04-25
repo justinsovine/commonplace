@@ -1,4 +1,4 @@
-import '@/styles/globals.css';
+import '@/globals.css';
 import { Funnel_Display } from 'next/font/google';
 import Header from './layout/Header';
 import Footer from './layout/Footer';

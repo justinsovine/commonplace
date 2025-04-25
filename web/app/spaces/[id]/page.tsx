@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getSpace, getSpaceBookings } from '../../../src/services/api';
+import { getSpace, getSpaceBookings } from '@/api';
 import SpaceDetails from './SpaceDetails';
 
 export const dynamic = 'force-dynamic';

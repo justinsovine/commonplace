@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Space, Booking } from '../../../src/services/api';
+import { Space, Booking } from '@/api';
 
 interface SpaceDetailsProps {
     space: Space;
