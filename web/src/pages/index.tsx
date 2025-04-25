@@ -25,9 +25,7 @@ export default function Home() {
                     <Link
                         href={`/spaces`}
                         className={`inline-block bg-button text-button-text px-8 py-6 rounded-sm font-semibold text-base 
-                        transition duration-90 ease-in-out 
-                        hover:scale-99 hover:bg-button-hover 
-                        active:scale-96 active:bg-button-active`}
+                        transition duration-90 ease-in-out hover:scale-99 hover:bg-button-hover active:scale-96 active:bg-button-active`}
                     >
                         View Available Spaces
                     </Link>
