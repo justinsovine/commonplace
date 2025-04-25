@@ -4,7 +4,7 @@
 
 ## Stack
 
-- **Frontend**: [Next.js](https://nextjs.org/) with TailwindCSS for quick styling  
+- **Frontend**: [Next.js](https://nextjs.org/) with TailwindCSS  
 - **Backend**: [Laravel](https://laravel.com/) serving a JSON API  
 - **Database**: MySQL (or SQLite locally) with seed data for spaces  
 - **Server**: NGINX + PHP-FPM + Node.js (deployed on a single VPS)
@@ -13,7 +13,7 @@
 ## Project Structure
 
 <code>/commonplace/
-├── api/              # Laravel app (API only, no views)
+├── api/              # Laravel app (API only)
 ├── web/              # Next.js frontend
 ├── LICENSE           # MIT license
 ├── README.md         # You're here</code>
