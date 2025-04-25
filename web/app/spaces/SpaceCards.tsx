@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Space } from '../../src/services/api';
+import { Space } from '@/api';
 
 export default function SpaceCards({ spaces }: { spaces: Space[] }) {
     const cardsRef = useRef<HTMLDivElement>(null);
