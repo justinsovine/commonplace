@@ -1,4 +1,4 @@
-import { getAllBookings } from '../../src/services/api';
+import { getAllBookings } from '@/api';
 import BookingsList from './BookingsList';
 
 export const dynamic = 'force-dynamic';

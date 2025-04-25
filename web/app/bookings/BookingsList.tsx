@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Booking } from '../../src/services/api';
+import { Booking } from '@/api';
 
 export default function BookingsList({ bookings }: { bookings: Booking[] }) {
     const cardsRef = useRef<HTMLDivElement>(null);
