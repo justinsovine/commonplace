@@ -6,7 +6,8 @@ import SpaceDetails from './SpaceDetails';
 export const dynamic = 'force-dynamic';
 
 // Generate metadata for each page
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata(props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     const spaceId = parseInt(params.id, 10);
     const space = await getSpace(spaceId);
 
@@ -21,7 +22,8 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     };
 }
 
-export default async function SpacePage({ params }: { params: { id: string } }) {
+export default async function SpacePage(props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     const spaceId = parseInt(params.id, 10);
     const space = await getSpace(spaceId);
 
